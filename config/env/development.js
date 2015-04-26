@@ -21,8 +21,8 @@ module.exports = {
 		title: 'MEAN.JS - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '1550413525232386',
+		clientSecret: process.env.FACEBOOK_SECRET || '8e137827a12fcda01be596d549cad70c',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
@@ -31,8 +31,8 @@ module.exports = {
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		clientID: process.env.GOOGLE_ID || '682970557048-nlm8gco2m4673e21pt6n0559seb0umeh.apps.googleusercontent.com',
+		clientSecret: process.env.GOOGLE_SECRET || 'u0TPtE_0nPW201Ax8AEr7WwS',
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {
