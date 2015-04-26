@@ -1,8 +1,8 @@
 'use strict';
 
 // Articles controller
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Socket', 'Authentication', 'Articles',
+	function($scope, $stateParams, $location, Socket, Authentication, Articles) {
 		$scope.authentication = Authentication;
 
 		// Create new Article
@@ -64,5 +64,11 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 				articleId: $stateParams.articleId
 			});
 		};
+
+
+		Socket.on('article.created', function(article) {
+			console.log(article);
+
+		});
 	}
 ]);
