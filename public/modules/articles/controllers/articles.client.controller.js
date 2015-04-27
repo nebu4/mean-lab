@@ -65,10 +65,21 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 			});
 		};
 
-
+		// push method
 		Socket.on('article.created', function(article) {
+			console.log("create");
 			console.log(article);
+		});
 
+		Socket.on('article.updated', function(article) {
+			if (Authentication.user._id != article.user._id) {
+				console.log(article);
+			}
+		});
+
+		Socket.on('article.deleted', function(article) {
+			console.log("delete");
+			console.log(article);
 		});
 	}
 ]);

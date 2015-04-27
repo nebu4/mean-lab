@@ -22,6 +22,7 @@ exports.create = function(req, res) {
 			});
 		} else {
 			var socketio = req.app.get('socketio');
+
 			socketio.sockets.emit('article.created', article);
 			res.json(article);
 		}
@@ -40,7 +41,6 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
 	var article = req.article;
-
 	article = _.extend(article, req.body);
 
 	article.save(function(err) {
@@ -49,6 +49,8 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var socketio = req.app.get('socketio');
+			socketio.sockets.emit('article.updated', article);
 			res.json(article);
 		}
 	});
@@ -66,6 +68,8 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var socketio = req.app.get('socketio');
+			socketio.sockets.emit('article.deleted', article);
 			res.json(article);
 		}
 	});
