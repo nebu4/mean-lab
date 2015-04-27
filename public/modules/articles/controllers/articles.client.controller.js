@@ -67,19 +67,35 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
 		// push method
 		Socket.on('article.created', function(article) {
-			console.log("create");
-			console.log(article);
+			if ($scope.articles) {
+				$scope.articles.push(article);
+			}
 		});
 
 		Socket.on('article.updated', function(article) {
-			if (Authentication.user._id != article.user._id) {
-				console.log(article);
+
+			if (Authentication.user._id !== article.user._id) {
+				if ($scope.articles) {
+					var articles = $scope.articles,
+							index = articles.map(function (x) { return x._id; }).indexOf(article._id);
+					articles[index] = article;
+				}
+				
+				if ($scope.article) {
+					var currentArticle = $scope.article;
+					if (currentArticle._id == article._id) {
+						$scope.article = angular.copy(article);
+					}
+				}
 			}
 		});
 
 		Socket.on('article.deleted', function(article) {
-			console.log("delete");
-			console.log(article);
+			if ($scope.articles) {
+				var articles = $scope.articles,
+						index = articles.map(function (x) { return x._id; }).indexOf(article._id);
+				articles.splice(index, 1);
+			}
 		});
 	}
 ]);
