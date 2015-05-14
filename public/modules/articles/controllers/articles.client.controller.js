@@ -83,7 +83,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 				
 				if ($scope.article) {
 					var currentArticle = $scope.article;
-					if (currentArticle._id == article._id) {
+					if (currentArticle._id === article._id) {
 						$scope.article = angular.copy(article);
 					}
 				}
